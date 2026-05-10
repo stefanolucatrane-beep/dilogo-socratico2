@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dialogo Socratico — La Solitudine e la Vera Amicizia</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --viola: #3C3489;
+    --viola-chiaro: #EDE9FE;
+    --viola-medio: #7F77DD;
+    --oro: #BA7517;
+    --oro-chiaro: #FAEEDA;
+    --teal: #0F6E56;
+    --teal-chiaro: #E1F5EE;
+    --grigio: #5F5E5A;
+    --grigio-chiaro: #F1EFE8;
+    --corallo: #993C1D;
+    --corallo-chiaro: #FAECE7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #FAF8F3;
+    font-family: 'Lora', Georgia, serif;
+    color: #2C2C2A;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #26215C 0%, #3C3489 60%, #534AB7 100%);
+    padding: 3rem 2rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '☽';
+    position: absolute;
+    top: 1rem; right: 2rem;
+    font-size: 4rem;
+    opacity: 0.08;
+  }
+  header::after {
+    content: '✦';
+    position: absolute;
+    bottom: 1rem; left: 2rem;
+    font-size: 3rem;
+    opacity: 0.08;
+  }
+  header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    color: white;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.4rem;
+    position: relative;
+  }
+  header .sottotitolo {
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    color: #CECBF6;
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    position: relative;
+  }
+  .tema-pill {
+    display: inline-block;
+    margin-top: 1rem;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #EDE9FE;
+    padding: 0.3rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* MAIN */
+  main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  /* VIGNETTA */
+  .vignetta {
+    background: white;
+    border-radius: 16px;
+    border: 1.5px solid #DDD8CC;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    animation: fadeUp 0.5s ease both;
+  }
+  .vignetta:nth-child(1)  { animation-delay: 0.05s; }
+  .vignetta:nth-child(2)  { animation-delay: 0.09s; }
+  .vignetta:nth-child(3)  { animation-delay: 0.13s; }
+  .vignetta:nth-child(4)  { animation-delay: 0.17s; }
+  .vignetta:nth-child(5)  { animation-delay: 0.21s; }
+  .vignetta:nth-child(6)  { animation-delay: 0.25s; }
+  .vignetta:nth-child(7)  { animation-delay: 0.29s; }
+  .vignetta:nth-child(8)  { animation-delay: 0.33s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .vignetta-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1.4rem;
+    border-bottom: 1px solid #EEE8DC;
+    background: #FDFAF5;
+  }
+  .numero {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--viola);
+    min-width: 1.8rem;
+  }
+  .vignetta-titolo {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 0.97rem;
+    color: var(--viola);
+    font-weight: 700;
+    font-style: italic;
+  }
+
+  .vignetta-body {
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* SCENA */
+  .scena {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+  }
+  .scena.destra { flex-direction: row-reverse; }
+
+  .personaggio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    min-width: 60px;
+  }
+  .avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    border: 2px solid;
+    flex-shrink: 0;
+  }
+  .avatar.socrate  { background: var(--viola-chiaro); border-color: var(--viola-medio); }
+  .avatar.allievo  { background: var(--oro-chiaro);   border-color: var(--oro); }
+  .avatar.allievo-triste { background: var(--corallo-chiaro); border-color: var(--corallo); }
+  .avatar.allievo-ok { background: var(--teal-chiaro); border-color: var(--teal); }
+
+  .nome {
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--grigio);
+    text-align: center;
+  }
+
+  .bubble {
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    font-size: 0.91rem;
+    line-height: 1.65;
+    max-width: calc(100% - 72px);
+    border: 1px solid;
+  }
+  .bubble.soc {
+    background: var(--viola-chiaro);
+    border-color: var(--viola-medio);
+    color: #26215C;
+    font-style: italic;
+  }
+  .bubble.all {
+    background: #FFFDF8;
+    border-color: #DDD8CC;
+    color: #2C2C2A;
+  }
+  .bubble.all-triste {
+    background: var(--corallo-chiaro);
+    border-color: #F0997B;
+    color: var(--corallo);
+  }
+  .bubble.all-ok {
+    background: var(--teal-chiaro);
+    border-color: #5DCAA5;
+    color: var(--teal);
+  }
+
+  em.chi {
+    display: block;
+    font-size: 0.7rem;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+    opacity: 0.65;
+  }
+
+  /* INSIGHT */
+  .insight {
+    background: var(--grigio-chiaro);
+    border-left: 4px solid var(--viola-medio);
+    border-radius: 0 10px 10px 0;
+    padding: 0.8rem 1rem;
+    font-size: 0.86rem;
+    color: var(--grigio);
+    font-style: italic;
+    margin-top: 0.2rem;
+  }
+  .insight strong { color: var(--viola); font-style: normal; }
+
+  /* DOMANDA CHIAVE */
+  .domanda-chiave {
+    background: #26215C;
+    border-radius: 12px;
+    padding: 1.1rem 1.3rem;
+    text-align: center;
+    color: #EDE9FE;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0.3rem 0;
+  }
+
+  /* CONCLUSIONE */
+  .conclusione {
+    background: var(--viola);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    color: white;
+    box-shadow: 0 8px 40px rgba(60,52,137,0.25);
+  }
+  .conclusione blockquote {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+    font-style: italic;
+    line-height: 1.75;
+    color: white;
+    margin-bottom: 1.2rem;
+  }
+  .conclusione cite {
+    font-size: 0.8rem;
+    color: #AFA9EC;
+    letter-spacing: 0.08em;
+  }
+
+  /* FRASE FINALE GRANDE */
+  .frase-finale {
+    background: white;
+    border-radius: 16px;
+    border: 2px solid var(--viola-medio);
+    padding: 2rem 1.8rem;
+    text-align: center;
+  }
+  .frase-finale p {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+    color: var(--viola);
+    line-height: 1.8;
+    font-style: italic;
+  }
+  .frase-finale .autore {
+    display: block;
+    margin-top: 1rem;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 0.78rem;
+    color: var(--grigio);
+    letter-spacing: 0.08em;
+    font-style: normal;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    color: #B4B2A9;
+    font-size: 0.76rem;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Dialogo Socratico</h1>
+  <p class="sottotitolo">La solitudine, la paura e la vera amicizia</p>
+  <span class="tema-pill">✦ Inclusione · Rispetto · Dignità ✦</span>
+</header>
+
+<main>
+
+  <!-- 1 -->
+  <div class="vignetta">
+    <div class="vignetta-header">
+      <span class="numero">①</span>
+      <span class="vignetta-titolo">Il problema: non mi sento incluso</span>
+    </div>
+    <div class="vignetta-body">
+      <div class="scena destra">
+        <div class="personaggio">
+          <div class="avatar allievo-triste">😔</div>
+          <span class="nome">Allievo</span>
+        </div>
+        <div class="bubble all-triste">
+          «Ho trovato un gruppo di amici, ma non mi sento incluso.»
+        </div>
+      </div>
+      <div class="scena">
+        <div class="personaggio">
+          <div class="avatar socrate">🏛</div>
+          <span class="nome">Socrate</span>
+        </div>
+        <div class="bubble soc">
+          «Ti sei mai chiesto quali sono le tue priorità in un'amicizia?»
+        </div>
+      </div>
+      <div class="scena destra">
+        <div class="personaggio">
+          <div class="avatar allievo">🎒</div>
+          <span class="nome">Allievo</span>
+        </div>
+        <div class="bubble all">
+          «Rispetto reciproco e trovare un accordo, così da evitare scontri.»
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="vignetta">
+    <div class="vignetta-header">
+      <span class="numero">②</span>
+      <span class="vignetta-titolo">Il gruppo non soddisfa ciò che è essenziale</span>
+    </div>
+    <div class="vignetta-body">
+      <div class="scena">
+        <div class="personaggio">
+          <div class="avatar socrate">🏛</div>
+          <span class="nome">Socrate</span>
+        </div>
+        <div class="bubble soc">
+          «E nel tuo gruppo ci sono altri aspetti che compensano la mancanza di questi due?»
+        </div>
+      </div>
+      <div class="scena destra">
+        <div class="personaggio">
+          <div class="avatar allievo">🎒</div>
+          <span class="nome">Allievo</span>
+        </div>
+        <div class="bubble all">«Forse sì, ma non hanno la stessa importanza.»</div>
+      </div>
+      <div class="scena">
+        <div class="personaggio">
+          <div class="avatar socrate">🏛</div>
+          <span class="nome">Socrate</span>
+        </div>
+        <div class="bubble soc">
+          «Dunque ritieni che non soddisfino ciò che per te è essenziale in un'amicizia?»
+        </div>
+      </div>
+      <div class="scena destra">
+        <div class="personaggio">
+          <div class="avatar allievo">🎒</div>
+          <span class="nome">Allievo</span>
+        </div>
+        <div class="bubble all">«No, non credo.»</div>
+      </div>
+      <div class="insight">
+        <strong>Riflessione:</strong> L'allievo sa già che qualcosa non va. Socrate lo aiuta a riconoscerlo chiaramente.
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="vignetta">
+    <div class="vignetta-header">
+      <span class="numero">③</span>
+      <span class="vignetta-titolo">La vera ragione: la paura della solitudine</span>
+    </div>
+    <div class="vignetta-body">
+      <div class="scena">
+        <div class="personaggio">
+          <div class="avatar socrate">🏛</div>
+          <span class="nome">Socrate</span>
+        </div>
+        <div class="bubble soc">«E allora cosa ti spinge a restare con loro?»</div>
+      </div>
+      <div class="scena destra">
+        <div class="personaggio">
+          <div class="avatar allievo-triste">😰</div>
+          <span class="nome">Allievo</span>
+        </div>
+        <div class="bubble all-triste">«La paura di rimanere solo.»</div>
+      </div>
+      <div class="scena">
+        <div class="personaggio">
+          <div class="avatar socrate">🏛</div>
+          <span class="nome">Socrate</span>
+        </div>
+        <div class="bubble soc">
+          «Ritieni dunque che sia meglio avere ora una compagnia che non ti rispetta, piuttosto che affrontare la solitudine in attesa di legami migliori?»
+        </div>
+      </div>
+      <div class="scena destra">
+        <div class="personaggio">
+          <div class="avatar allievo-triste">😰</div>
+          <span class="nome">Allievo</span>
+        </div>
+        <div class="bubble all-triste">
+          «La solitudine mi spaventa più della loro mancanza di rispetto.»
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="vignetta">
+    <div class="vignetta-header">
+      <span class="numero">④</span>
+      <span class="vignetta-titolo">Ciò che spaventa può insegnare</span>
+    </div>
+    <div class="vignetta-body">
+      <div class="scena">
+        <div class="personaggio">
+          <div class="avatar socrate">🏛</div>
+          <span class="nome">Socrate</span>
+        </div>
+        <div class="bubble soc">
+          «Dimmi: ciò che spaventa va sempre evitato, o talvolta può insegnare qualcosa?»
+        </div>
+      </div>
+      <div class="scena destra">
+        <div class="personaggio">
+          <div class="avatar allievo">🤔</div>
+          <span class="nome">Allievo</span>
+        </div>
+        <div class="bubble all">«Forse può insegnare…»</div>
+      </div>
+      <div class="insight">
+        <strong>Il primo passo:</strong> L'allievo inizia ad aprirsi. La paura non è più un muro invalicabile — può diventare una maestra.
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 — domanda chiave -->
+  <div class="vignetta">
+    <div class="vignetta-header">
+      <span class="numero">⑤</span>
+      <span class="vignetta-titolo">La domanda che cambia tutto</span>
+    </div>
+    <div class="vignetta-body">
+      <div class="scena">
+        <div class="personaggio">
+          <div class="avatar socrate">🏛</div>
+          <span class="nome">Socrate</span>
+        </div>
+        <div class="bubble soc">
+          «Se non sopporti la tua stessa compagnia, come potranno gli altri apprezzarla? Non è forse meglio comprendere il proprio vuoto, invece di riempirlo con chiunque?»
+        </div>
+      </div>
+      <div class="scena destra">
+        <div class="personaggio">
+          <div class="avatar allievo">🤔</div>
+          <span class="nome">Allievo</span>
+        </div>
+        <div class="bubble all">«Forse sì…»</div>
+      </div>
+      <div class="domanda-chiave">
+        «È preferibile essere soli con dignità<br>o accompagnati senza rispetto?»
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="vignetta">
+    <div class="vignetta-header">
+      <span class="numero">⑥</span>
+      <span class="vignetta-titolo">La risposta era già dentro di te</span>
+    </div>
+    <div class="vignetta-body">
+      <div class="scena destra">
+        <div class="personaggio">
+          <div class="avatar allievo-ok">🙂</div>
+          <span class="nome">Allievo</span>
+        </div>
+        <div class="bubble all-ok">
+          «Essere soli con dignità… anche se è più difficile.»
+        </div>
+      </div>
+      <div class="scena">
+        <div class="personaggio">
+          <div class="avatar socrate">🏛</div>
+          <span class="nome">Socrate</span>
+        </div>
+        <div class="bubble soc">
+          «Vedi dunque che la risposta era già in te.»
+        </div>
+      </div>
+      <div class="insight">
+        <strong>Il metodo socratico:</strong> Socrate non dà risposte. Aiuta l'allievo a trovarle dentro sé stesso — perché solo allora diventano davvero sue.
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 — monologo finale -->
+  <div class="vignetta">
+    <div class="vignetta-header">
+      <span class="numero">⑦</span>
+      <span class="vignetta-titolo">La solitudine come tempo di scelta</span>
+    </div>
+    <div class="vignetta-body">
+      <div class="scena">
+        <div class="personaggio">
+          <div class="avatar socrate">🏛</div>
+          <span class="nome">Socrate</span>
+        </div>
+        <div class="bubble soc">
+          <em class="chi">Socrate conclude:</em>
+          «La solitudine che temi non è una condanna, ma un tempo di scelta. Chi accetta di restare solo per un po' non perde amici: impara a riconoscerli. E quando saprai stare bene con te stesso, non cercherai più compagnia per paura, ma per vera affinità.»
+        </div>
+      </div>
+      <div class="scena destra">
+        <div class="personaggio">
+          <div class="avatar allievo-ok">😌</div>
+          <span class="nome">Allievo</span>
+        </div>
+        <div class="bubble all-ok">
+          «Capisco. Forse ho bisogno di imparare a stare con me stesso.»
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FRASE FINALE -->
+  <div class="frase-finale">
+    <p>
+      «Chi accetta di restare solo per un po' non perde amici:<br>
+      impara a riconoscerli.<br>
+      E quando saprai stare bene con te stesso,<br>
+      non cercherai più compagnia per paura,<br>
+      ma per vera affinità.»
+    </p>
+    <span class="autore">— Socrate</span>
+  </div>
+
+  <!-- CONCLUSIONE -->
+  <div class="conclusione">
+    <blockquote>
+      «La solitudine che temi non è una condanna,<br>
+      ma un tempo di scelta.»
+    </blockquote>
+    <cite>— Dialogo Socratico sulla solitudine e la vera amicizia</cite>
+  </div>
+
+</main>
+
+<footer>
+  Dialogo Socratico · La solitudine, il rispetto e la vera amicizia
+</footer>
+
+</body>
+</html>
